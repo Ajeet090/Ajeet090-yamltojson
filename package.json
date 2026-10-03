@@ -6,8 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "postinstall": "node scripts/setup-esbuild.cjs"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.4",
