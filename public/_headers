@@ -1,0 +1,12 @@
+# Cloudflare Pages Headers Configuration
+# Documentation: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Prevent search engines from indexing the default *.pages.dev subdomain
+https://ajeet090-yamltojson.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+# Security & performance headers for all routes
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
