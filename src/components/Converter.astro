@@ -234,9 +234,15 @@
   </div>
 </section>
 
-<!-- Client Script for Bi-Directional Conversion & Interactive Actions -->
 <script>
-  import YAML from 'yaml';
+  let yamlModule: typeof import('yaml') | null = null;
+
+  async function getYaml() {
+    if (!yamlModule) {
+      yamlModule = await import('yaml');
+    }
+    return yamlModule;
+  }
 
   // Sample data definitions
   const SAMPLE_YAML = `server_name: "production-omega"
@@ -365,7 +371,7 @@ services:
   }
 
   // Main Conversion Function
-  function convert() {
+  async function convert() {
     const val = sourceInput.value.trim();
     updateMetrics(sourceInput.value);
 
@@ -379,6 +385,7 @@ services:
     }
 
     try {
+      const YAML = await getYaml();
       if (currentMode === 'yaml2json') {
         let parsed = YAML.parse(val);
         if (parsed === undefined) {

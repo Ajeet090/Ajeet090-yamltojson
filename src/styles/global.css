@@ -1,10 +1,13 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Geist', sans-serif;
+    font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Geist', sans-serif;
     background-color: #fafafa;
     color: #171717;
     scroll-behavior: smooth;
@@ -20,7 +23,7 @@
   }
 
   code, pre, kbd, samp, .font-mono {
-    font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 }
 
