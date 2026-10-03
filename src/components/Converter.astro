@@ -25,9 +25,11 @@
       <div class="p-4 sm:p-5 border-b border-hairline bg-canvas flex flex-col md:flex-row md:items-center justify-between gap-4">
         
         <!-- Mode Switcher Pill Tabs -->
-        <div class="flex items-center bg-hairline p-1 rounded-full w-fit">
+        <div class="flex items-center bg-hairline p-1 rounded-full w-fit" role="tablist" aria-label="Conversion Mode">
           <button
             id="mode-yaml2json"
+            role="tab"
+            aria-selected="true"
             class="mode-btn active-mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 bg-ink text-canvas shadow-xs cursor-pointer"
             data-mode="yaml2json"
           >
@@ -35,6 +37,8 @@
           </button>
           <button
             id="mode-json2yaml"
+            role="tab"
+            aria-selected="false"
             class="mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 text-body hover:text-ink cursor-pointer"
             data-mode="json2yaml"
           >
@@ -48,8 +52,9 @@
             id="btn-sample"
             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition shadow-2xs cursor-pointer"
             title="Load sample code for testing"
+            aria-label="Reset to sample code"
           >
-            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
             </svg>
             Reset Example
@@ -59,8 +64,9 @@
             id="btn-swap"
             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition shadow-2xs cursor-pointer"
             title="Swap input and output"
+            aria-label="Swap input and output data"
           >
-            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
             </svg>
             Swap
@@ -71,19 +77,20 @@
             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition shadow-2xs cursor-pointer"
             title="Upload file from computer"
           >
-            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
             </svg>
             Upload File
-            <input id="file-upload" type="file" accept=".yaml,.yml,.json,.txt" class="hidden" />
+            <input id="file-upload" type="file" accept=".yaml,.yml,.json,.txt" aria-label="Upload YAML or JSON file" class="hidden" />
           </label>
 
           <button
             id="btn-clear"
             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-body hover:text-[#ee0000] hover:border-[#ee0000] hover:bg-red-50/50 transition shadow-2xs cursor-pointer"
             title="Clear all text"
+            aria-label="Clear all editor text"
           >
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
             Clear
@@ -105,10 +112,10 @@
         </div>
 
         <!-- Syntax Status Badge -->
-        <div id="status-badge-container" class="flex items-center gap-2">
+        <div id="status-badge-container" class="flex items-center gap-2" role="status" aria-live="polite">
           <span class="text-mute">Status:</span>
           <span id="status-badge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
             <span id="status-badge-text">Valid Syntax</span>
           </span>
         </div>
@@ -449,6 +456,8 @@ services:
     if (mode === 'yaml2json') {
       modeYaml2Json.className = 'mode-btn active-mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 bg-ink text-canvas shadow-xs cursor-pointer';
       modeJson2Yaml.className = 'mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 text-body hover:text-ink cursor-pointer';
+      modeYaml2Json.setAttribute('aria-selected', 'true');
+      modeJson2Yaml.setAttribute('aria-selected', 'false');
       sourceTitle.textContent = 'Source Document (YAML)';
       outputTitle.textContent = 'Compiled Structure (JSON)';
       sourceInput.placeholder = 'Paste or type your YAML data here...';
@@ -461,6 +470,8 @@ services:
     } else {
       modeJson2Yaml.className = 'mode-btn active-mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 bg-ink text-canvas shadow-xs cursor-pointer';
       modeYaml2Json.className = 'mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 text-body hover:text-ink cursor-pointer';
+      modeJson2Yaml.setAttribute('aria-selected', 'true');
+      modeYaml2Json.setAttribute('aria-selected', 'false');
       sourceTitle.textContent = 'Source Document (JSON)';
       outputTitle.textContent = 'Compiled Structure (YAML)';
       sourceInput.placeholder = 'Paste or type your JSON data here...';

@@ -8,8 +8,8 @@ export default {
         'canvas-elevated': '#ffffff',
         ink: '#171717',
         body: '#4d4d4d',
-        mute: '#8f8f8f',
-        faint: '#a1a1a1',
+        mute: '#666666',
+        faint: '#6e6e6e',
         hairline: '#ebebeb',
         'hairline-soft': '#f2f2f2',
         link: {
