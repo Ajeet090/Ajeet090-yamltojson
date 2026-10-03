@@ -22,21 +22,23 @@ try {
 
   for (const target of targets) {
     if (fs.existsSync(target) && fs.existsSync(wasmDir)) {
-      const wasmFileInTarget = path.join(target, 'esbuild.wasm');
-      if (!fs.existsSync(wasmFileInTarget)) {
-        console.log(`[setup-esbuild] Patching ${target} with esbuild-wasm...`);
-        const filesToCopy = ['esbuild.wasm', 'wasm_exec.js', 'wasm_exec_node.js'];
-        for (const f of filesToCopy) {
-          const src = path.join(wasmDir, f);
-          if (fs.existsSync(src)) {
-            fs.copyFileSync(src, path.join(target, f));
-          }
+      console.log(`[setup-esbuild] Patching ${target} with esbuild-wasm...`);
+      const filesToCopy = ['esbuild.wasm', 'wasm_exec.js', 'wasm_exec_node.js'];
+      for (const f of filesToCopy) {
+        const src = path.join(wasmDir, f);
+        if (fs.existsSync(src)) {
+          fs.copyFileSync(src, path.join(target, f));
         }
-        const libSrc = path.join(wasmDir, 'lib');
-        const libDest = path.join(target, 'lib');
-        if (fs.existsSync(libSrc)) {
-          fs.cpSync(libSrc, libDest, { recursive: true, force: true });
-        }
+      }
+      const libSrc = path.join(wasmDir, 'lib');
+      const libDest = path.join(target, 'lib');
+      if (fs.existsSync(libSrc)) {
+        fs.cpSync(libSrc, libDest, { recursive: true, force: true });
+      }
+      const binSrc = path.join(wasmDir, 'bin');
+      const binDest = path.join(target, 'bin');
+      if (fs.existsSync(binSrc)) {
+        fs.cpSync(binSrc, binDest, { recursive: true, force: true });
       }
     }
   }
