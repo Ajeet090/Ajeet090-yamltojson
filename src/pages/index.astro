@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Converter from '../components/Converter.astro';
+import ConversionDiagram from '../components/ConversionDiagram.astro';
+import Features from '../components/Features.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import SeoContent from '../components/SeoContent.astro';
+import FaqSection from '../components/FaqSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="YAML to JSON Converter - Free Online YAML to JSON Tool | yamltojson.net"
+  description="Free online YAML to JSON converter. Convert YAML to clean, formatted JSON instantly in your browser with real-time syntax validation, Python guides, and 100% privacy."
+  includeFaqSchema={true}
+>
+  <Header />
+  <main class="flex-1">
+    <Converter />
+    <ConversionDiagram />
+    <Features />
+    <ComparisonTable />
+    <SeoContent />
+    <FaqSection />
+  </main>
+  <Footer />
+</Layout>

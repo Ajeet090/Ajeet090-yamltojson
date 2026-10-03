@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="404 - Page Not Found | yamltojson.net"
+  description="The requested page could not be found on yamltojson.net. Return to the homepage to convert YAML to JSON online."
+  canonicalUrl="https://yamltojson.net/404/"
+>
+  <Header />
+
+  <main class="flex-1 bg-canvas flex items-center justify-center py-20 sm:py-32 transition-colors duration-200">
+    <div class="max-w-md mx-auto px-4 text-center space-y-6">
+      
+      <!-- 404 Display Badge -->
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-canvas-elevated border border-hairline font-mono text-xl font-bold text-ink shadow-xs">
+        404
+      </div>
+
+      <!-- Message -->
+      <div class="space-y-2">
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-ink">
+          Page Not Found
+        </h1>
+        <p class="text-sm text-body leading-relaxed">
+          The page you are looking for doesn't exist or has been moved. Use the options below to navigate back.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href="/"
+          class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-ink text-canvas text-xs font-semibold hover:opacity-90 transition shadow-xs"
+        >
+          Return to Homepage
+        </a>
+        <a
+          href="/#faq"
+          class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-canvas-elevated border border-hairline text-ink text-xs font-semibold hover:bg-hairline-soft transition"
+        >
+          View FAQ
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

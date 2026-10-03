@@ -1,0 +1,76 @@
+---
+const steps = [
+  {
+    step: "01",
+    title: "Input Data or Upload File",
+    description: "Paste raw YAML or JSON directly into the editor, or upload a .yaml, .yml, or .json file from your computer.",
+    icon: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+  },
+  {
+    step: "02",
+    title: "Instant In-Browser Parse",
+    description: "Your data is converted and validated instantly in real time using 100% local browser JavaScript with zero server transmission.",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+  },
+  {
+    step: "03",
+    title: "Copy or Download Output",
+    description: "Click to copy your formatted JSON or YAML directly to your clipboard, or save a formatted file to your device.",
+    icon: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+  }
+];
+---
+
+<section class="py-16 bg-canvas border-b border-hairline transition-colors duration-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 text-center max-w-2xl mx-auto">
+      <span class="font-mono text-xs font-semibold uppercase tracking-wider text-mute block mb-2">
+        HOW IT WORKS
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-semibold tracking-[-0.03em] text-ink mb-3">
+        Simple 3-Step Conversion Process
+      </h2>
+      <p class="text-base text-body">
+        Convert, validate, and export your YAML and JSON configuration files effortlessly in 3 simple steps.
+      </p>
+    </div>
+
+    <!-- 3-Step Diagram Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+      {steps.map((item, index) => (
+        <div class="bg-canvas-elevated p-6 rounded-xl border border-hairline shadow-2xs relative flex flex-col justify-between group hover:border-mute transition duration-200">
+          <div>
+            <!-- Top Step Badge & Icon Header -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-10 h-10 rounded-[6px] bg-canvas border border-hairline text-ink flex items-center justify-center group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={item.icon} />
+                </svg>
+              </div>
+              <span class="font-mono text-xs font-semibold text-mute bg-canvas px-2.5 py-1 rounded-[6px] border border-hairline">
+                Step {item.step}
+              </span>
+            </div>
+
+            <!-- Title & Description -->
+            <h3 class="text-base font-semibold text-ink mb-2 tracking-tight">
+              {item.title}
+            </h3>
+            <p class="text-xs text-body leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+
+          <!-- Bottom Visual Indicator -->
+          <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between font-mono text-[11px] text-mute">
+            <span>{index === 0 ? "Input Phase" : index === 1 ? "Privacy & Validation" : "Export Phase"}</span>
+            <span class="text-link font-semibold">Ready →</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

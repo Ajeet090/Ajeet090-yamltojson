@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Geist', sans-serif;
+    background-color: #fafafa;
+    color: #171717;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #fafafa;
+    color: #4d4d4d;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  code, pre, kbd, samp, .font-mono {
+    font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+/* Mesh Gradient background flourish */
+.mesh-gradient-bg {
+  background-color: #fafafa;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(80, 227, 194, 0.15) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(0, 112, 243, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(121, 40, 202, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(235, 54, 127, 0.08) 0px, transparent 50%);
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+/* Pixel-perfect synchronized Code Editor & Line Numbers */
+.code-editor-line-numbers {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  font-size: 13px !important;
+  line-height: 22px !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  box-sizing: border-box !important;
+  white-space: pre !important;
+  overflow: hidden !important;
+}
+
+.code-editor-textarea {
+  font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  font-size: 13px !important;
+  line-height: 22px !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  box-sizing: border-box !important;
+  white-space: pre !important;
+}

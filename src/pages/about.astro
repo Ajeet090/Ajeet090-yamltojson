@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="About Us - Free Online YAML to JSON Converter | yamltojson.net"
+  description="Learn about yamltojson.net, a 100% client-side, privacy-focused developer tool built for fast YAML to JSON and JSON to YAML conversion."
+  canonicalUrl="https://yamltojson.net/about/"
+>
+  <Header />
+
+  <main class="flex-1 bg-canvas transition-colors duration-200">
+    <!-- Hero Section -->
+    <section class="py-12 sm:py-20 mesh-gradient-bg border-b border-hairline">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-mute bg-canvas-elevated border border-hairline px-3 py-1 rounded-full mb-4 shadow-2xs">
+          ABOUT OUR TOOL
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-ink mb-4">
+          Built for Developers, Focused on Privacy
+        </h1>
+        <p class="text-base sm:text-lg text-body max-w-2xl mx-auto leading-relaxed">
+          yamltojson.net was created to provide a lightning-fast, ultra-secure online converter that processes all data directly inside your browser.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Body -->
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <!-- Section 1: Our Mission -->
+        <div class="bg-canvas-elevated p-6 sm:p-8 rounded-xl border border-hairline shadow-2xs space-y-4">
+          <h2 class="text-xl sm:text-2xl font-semibold text-ink tracking-tight">
+            Our Mission
+          </h2>
+          <p class="text-sm text-body leading-relaxed">
+            In modern cloud engineering, DevOps, and web development, developers constantly work with data serialization formats like <strong>YAML</strong> and <strong>JSON</strong>. However, many online converter utilities send user input to remote backends, introducing unacceptable latency and severe privacy risks—especially when handling sensitive API keys, database credentials, or proprietary configuration files.
+          </p>
+          <p class="text-sm text-body leading-relaxed">
+            Our mission at <strong>yamltojson.net</strong> is simple: deliver a zero-latency, high-performance web application where 100% of data conversion, syntax checking, and formatting happen locally inside the user's browser memory.
+          </p>
+        </div>
+
+        <!-- Section 2: Core Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-canvas-elevated p-6 rounded-xl border border-hairline shadow-2xs space-y-3">
+            <div class="w-10 h-10 rounded-[6px] bg-canvas border border-hairline flex items-center justify-center text-link">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-base font-semibold text-ink">100% Private</h3>
+            <p class="text-xs text-body leading-relaxed">
+              Zero network requests. Your data stays on your machine and is never stored or transmitted to external servers.
+            </p>
+          </div>
+
+          <div class="bg-canvas-elevated p-6 rounded-xl border border-hairline shadow-2xs space-y-3">
+            <div class="w-10 h-10 rounded-[6px] bg-canvas border border-hairline flex items-center justify-center text-link">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-base font-semibold text-ink">Zero Latency</h3>
+            <p class="text-xs text-body leading-relaxed">
+              Powered by optimized JavaScript execution engines, providing real-time feedback as you type or paste code.
+            </p>
+          </div>
+
+          <div class="bg-canvas-elevated p-6 rounded-xl border border-hairline shadow-2xs space-y-3">
+            <div class="w-10 h-10 rounded-[6px] bg-canvas border border-hairline flex items-center justify-center text-link">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-base font-semibold text-ink">Open Standards</h3>
+            <p class="text-xs text-body leading-relaxed">
+              Fully compliant with YAML 1.2 and standard JSON specifications for 100% interoperability with all developer tooling.
+            </p>
+          </div>
+        </div>
+
+        <!-- Section 3: Who We Serve -->
+        <div class="bg-canvas-elevated p-6 sm:p-8 rounded-xl border border-hairline shadow-2xs space-y-4">
+          <h2 class="text-xl sm:text-2xl font-semibold text-ink tracking-tight">
+            Who Uses yamltojson.net?
+          </h2>
+          <p class="text-sm text-body leading-relaxed">
+            Our tool is engineered specifically for professionals across the software industry:
+          </p>
+          <ul class="list-disc pl-5 text-sm text-body space-y-2">
+            <li><strong>DevOps Engineers & Sysadmins:</strong> Validating and debugging Kubernetes manifests (`kubectl`), Helm charts, Docker Compose files, and Ansible playbooks.</li>
+            <li><strong>Backend Developers:</strong> Converting API definitions (OpenAPI / Swagger specs) and backend service configurations.</li>
+            <li><strong>Frontend Engineers:</strong> Transforming mock data datasets into formatted JSON for web client consumption.</li>
+            <li><strong>Data Engineers:</strong> Seeding NoSQL databases like MongoDB or CouchDB with converted JSON documents.</li>
+          </ul>
+        </div>
+
+        <!-- Section 4: Call to Action -->
+        <div class="text-center bg-canvas-elevated p-8 rounded-xl border border-hairline space-y-4">
+          <h3 class="text-lg font-semibold text-ink">
+            Ready to convert your YAML or JSON files?
+          </h3>
+          <div>
+            <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-canvas text-sm font-medium hover:opacity-90 transition shadow-xs">
+              Go to Converter Tool →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

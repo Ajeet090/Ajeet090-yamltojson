@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "seo": {
+      "source": "D:\\yamltojson.net\\temp_web_quality\\web-quality-skills-main",
+      "sourceType": "local",
+      "computedHash": "01a735ac18ceb15536ac40b11a5712b3ab8f78ebe94748b3ebc3afc7f58a6f2f"
+    },
+    "tailwind-4-docs": {
+      "source": "D:\\yamltojson.net\\temp_tailwind\\Tailwind-Agent-Skills-dev",
+      "sourceType": "local",
+      "computedHash": "de756f5f03cc20a029983875b00b9dfef9d0ba8567d242c5cbb0262037d0a134"
+    }
+  }
+}

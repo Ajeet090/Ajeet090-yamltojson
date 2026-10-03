@@ -1,0 +1,569 @@
+---
+---
+
+<section class="relative w-full pt-10 pb-16 mesh-gradient-bg border-b border-hairline transition-colors duration-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto mb-8">
+      <div class="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-mute bg-canvas-elevated border border-hairline px-3 py-1 rounded-full mb-4 shadow-2xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#0070f3]"></span>
+        FREE ONLINE DEVELOPER TOOL
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-ink leading-[1.1] mb-4">
+        YAML to JSON Converter
+      </h1>
+      <p class="text-base sm:text-lg text-body font-normal leading-relaxed max-w-2xl mx-auto">
+        Transform YAML data into clean, formatted JSON instantly in your browser. Paste your YAML or load files with live syntax validation and zero server latency.
+      </p>
+    </div>
+
+    <!-- Main Converter Card (Geist Styling: Elevated surface bg, Hairline border) -->
+    <div class="bg-canvas-elevated rounded-xl border border-hairline shadow-sm overflow-hidden transition-colors duration-200">
+      
+      <!-- Top Control Bar: Mode Tabs & Actions -->
+      <div class="p-4 sm:p-5 border-b border-hairline bg-canvas flex flex-col md:flex-row md:items-center justify-between gap-4">
+        
+        <!-- Mode Switcher Pill Tabs -->
+        <div class="flex items-center bg-hairline p-1 rounded-full w-fit">
+          <button
+            id="mode-yaml2json"
+            class="mode-btn active-mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 bg-ink text-canvas shadow-xs cursor-pointer"
+            data-mode="yaml2json"
+          >
+            YAML to JSON
+          </button>
+          <button
+            id="mode-json2yaml"
+            class="mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 text-body hover:text-ink cursor-pointer"
+            data-mode="json2yaml"
+          >
+            JSON to YAML
+          </button>
+        </div>
+
+        <!-- Utility Action Buttons -->
+        <div class="flex flex-wrap items-center gap-2 text-xs font-medium">
+          <button
+            id="btn-sample"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition shadow-2xs cursor-pointer"
+            title="Load sample code for testing"
+          >
+            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+            Reset Example
+          </button>
+
+          <button
+            id="btn-swap"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition shadow-2xs cursor-pointer"
+            title="Swap input and output"
+          >
+            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+            Swap
+          </button>
+
+          <label
+            for="file-upload"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition shadow-2xs cursor-pointer"
+            title="Upload file from computer"
+          >
+            <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+            Upload File
+            <input id="file-upload" type="file" accept=".yaml,.yml,.json,.txt" class="hidden" />
+          </label>
+
+          <button
+            id="btn-clear"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] bg-canvas-elevated border border-hairline text-body hover:text-[#ee0000] hover:border-[#ee0000] hover:bg-red-50/50 transition shadow-2xs cursor-pointer"
+            title="Clear all text"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-time Metrics & Syntax Status Bar -->
+      <div class="px-4 py-2.5 bg-canvas border-b border-hairline flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+        <div class="flex items-center gap-6 text-body">
+          <div class="flex items-center gap-2">
+            <span class="text-mute">Input Lines:</span>
+            <span id="metric-lines" class="font-semibold text-ink">0</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-mute">Payload Size:</span>
+            <span id="metric-size" class="font-semibold text-ink">0 B</span>
+          </div>
+        </div>
+
+        <!-- Syntax Status Badge -->
+        <div id="status-badge-container" class="flex items-center gap-2">
+          <span class="text-mute">Status:</span>
+          <span id="status-badge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span id="status-badge-text">Valid Syntax</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Dual Code Editor Container -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
+        
+        <!-- Left Pane: Source Document -->
+        <div class="flex flex-col relative group">
+          <div class="px-4 py-2 bg-canvas border-b border-hairline flex items-center justify-between">
+            <span id="source-title" class="font-mono text-xs font-semibold text-ink tracking-tight uppercase">
+              Source Document (YAML)
+            </span>
+            <span class="text-[11px] text-mute font-mono">Editable</span>
+          </div>
+
+          <div class="relative flex-1 min-h-[320px] sm:min-h-[400px] flex bg-canvas-elevated font-mono text-xs sm:text-sm">
+            <!-- Line Numbers -->
+            <div id="source-line-numbers" class="w-10 sm:w-12 bg-canvas border-r border-hairline text-right pr-2 select-none text-mute code-editor-line-numbers">
+              1
+            </div>
+
+            <!-- Textarea Editor -->
+            <textarea
+              id="source-input"
+              aria-label="Source code input"
+              wrap="off"
+              class="flex-1 bg-transparent text-ink focus:outline-none resize-none border-0 placeholder:text-faint code-editor-textarea"
+              placeholder="Paste or type your YAML data here..."
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Right Pane: Compiled Structure -->
+        <div class="flex flex-col relative">
+          <div class="px-4 py-2 bg-canvas border-b border-hairline flex items-center justify-between">
+            <span id="output-title" class="font-mono text-xs font-semibold text-ink tracking-tight uppercase">
+              Compiled Structure (JSON)
+            </span>
+            <div class="flex items-center gap-2">
+              <button
+                id="btn-copy"
+                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[6px] bg-[#0070f3] text-white hover:bg-[#0761d1] transition text-xs font-medium cursor-pointer shadow-2xs"
+                title="Copy converted output"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span id="copy-text">Copy</span>
+              </button>
+
+              <button
+                id="btn-download"
+                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[6px] bg-canvas-elevated border border-hairline text-ink hover:bg-[#f2f2f2] transition text-xs font-medium cursor-pointer shadow-2xs"
+                title="Download file"
+              >
+                <svg class="w-3.5 h-3.5 text-body" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download
+              </button>
+            </div>
+          </div>
+
+          <div class="relative flex-1 min-h-[320px] sm:min-h-[400px] flex bg-canvas-elevated font-mono text-xs sm:text-sm">
+            <!-- Line Numbers -->
+            <div id="output-line-numbers" class="w-10 sm:w-12 bg-canvas border-r border-hairline text-right pr-2 select-none text-mute code-editor-line-numbers">
+              1
+            </div>
+
+            <!-- Output Readonly View -->
+            <textarea
+              id="output-result"
+              aria-label="Converted code output"
+              wrap="off"
+              class="flex-1 bg-transparent text-ink focus:outline-none resize-none border-0 readonly placeholder:text-faint code-editor-textarea"
+              readonly
+              placeholder="Converted JSON will appear here automatically..."
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formatting & Conversion Options Drawer Bar -->
+      <div class="p-4 bg-canvas border-t border-hairline flex flex-wrap items-center justify-between gap-4 text-xs font-medium text-body">
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+          
+          <!-- Indent Selector -->
+          <div class="flex items-center gap-2">
+            <label for="select-indent" class="text-mute font-mono">Indentation:</label>
+            <select
+              id="select-indent"
+              class="bg-canvas-elevated border border-hairline text-ink rounded-[6px] px-2.5 py-1 font-mono text-xs focus:outline-none focus:border-[#0070f3] cursor-pointer"
+            >
+              <option value="2" selected>2 Spaces</option>
+              <option value="4">4 Spaces</option>
+              <option value="tab">Tab</option>
+            </select>
+          </div>
+
+          <!-- Minify Toggle -->
+          <label class="flex items-center gap-2 cursor-pointer select-none">
+            <input id="toggle-minify" type="checkbox" class="w-4 h-4 rounded border-hairline text-ink focus:ring-0 accent-ink" />
+            <span>Minify / Compress Output</span>
+          </label>
+
+          <!-- Sort Keys Toggle -->
+          <label class="flex items-center gap-2 cursor-pointer select-none">
+            <input id="toggle-sort-keys" type="checkbox" class="w-4 h-4 rounded border-hairline text-ink focus:ring-0 accent-ink" />
+            <span>Sort Object Keys</span>
+          </label>
+        </div>
+
+        <div class="text-[11px] font-mono text-mute hidden sm:block">
+          Auto-converts on edit • Powered by YAML 1.2
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Client Script for Bi-Directional Conversion & Interactive Actions -->
+<script>
+  import YAML from 'yaml';
+
+  // Sample data definitions
+  const SAMPLE_YAML = `server_name: "production-omega"
+port: 8080
+secure: true
+max_connections: 5000
+version: 2.4
+database:
+  host: "db.internal"
+  port: 5432
+  name: "app_db"
+services:
+  - api-gateway
+  - auth-service
+  - billing-service`;
+
+  const SAMPLE_JSON = `{
+  "server_name": "production-omega",
+  "port": 8080,
+  "secure": true,
+  "max_connections": 5000,
+  "version": 2.4,
+  "database": {
+    "host": "db.internal",
+    "port": 5432,
+    "name": "app_db"
+  },
+  "services": [
+    "api-gateway",
+    "auth-service",
+    "billing-service"
+  ]
+}`;
+
+  let currentMode: 'yaml2json' | 'json2yaml' = 'yaml2json';
+
+  // DOM Element References
+  const modeYaml2Json = document.getElementById('mode-yaml2json')!;
+  const modeJson2Yaml = document.getElementById('mode-json2yaml')!;
+  const sourceTitle = document.getElementById('source-title')!;
+  const outputTitle = document.getElementById('output-title')!;
+  const sourceInput = document.getElementById('source-input') as HTMLTextAreaElement;
+  const outputResult = document.getElementById('output-result') as HTMLTextAreaElement;
+  const sourceLineNumbers = document.getElementById('source-line-numbers')!;
+  const outputLineNumbers = document.getElementById('output-line-numbers')!;
+
+  const selectIndent = document.getElementById('select-indent') as HTMLSelectElement;
+  const toggleMinify = document.getElementById('toggle-minify') as HTMLInputElement;
+  const toggleSortKeys = document.getElementById('toggle-sort-keys') as HTMLInputElement;
+
+  const btnSample = document.getElementById('btn-sample')!;
+  const btnSwap = document.getElementById('btn-swap')!;
+  const btnClear = document.getElementById('btn-clear')!;
+  const btnCopy = document.getElementById('btn-copy')!;
+  const copyText = document.getElementById('copy-text')!;
+  const btnDownload = document.getElementById('btn-download')!;
+  const fileUpload = document.getElementById('file-upload') as HTMLInputElement;
+
+  const metricLines = document.getElementById('metric-lines')!;
+  const metricSize = document.getElementById('metric-size')!;
+  const statusBadgeContainer = document.getElementById('status-badge-container')!;
+  const statusBadge = document.getElementById('status-badge')!;
+  const statusBadgeText = document.getElementById('status-badge-text')!;
+
+  // Helper to extract line number from parse errors
+  function extractErrorLine(err: any, input: string): number | null {
+    if (!err) return null;
+
+    if (err.linePos && Array.isArray(err.linePos) && err.linePos[0]?.line) {
+      return err.linePos[0].line;
+    }
+
+    const msg = err.message || '';
+
+    const lineMatch = msg.match(/line\s+(\d+)/i);
+    if (lineMatch && lineMatch[1]) {
+      return parseInt(lineMatch[1], 10);
+    }
+
+    const posMatch = msg.match(/position\s+(\d+)/i);
+    if (posMatch && posMatch[1]) {
+      const pos = parseInt(posMatch[1], 10);
+      if (!isNaN(pos) && pos >= 0) {
+        return input.slice(0, pos).split('\n').length;
+      }
+    }
+
+    return null;
+  }
+
+  // Helper to update line numbers side pane
+  function updateLineNumbers(textarea: HTMLTextAreaElement, lineContainer: HTMLElement, errorLine?: number | null) {
+    const lines = textarea.value.split('\n').length;
+    let numbersHtml = '';
+    for (let i = 1; i <= Math.max(lines, 1); i++) {
+      if (errorLine && i === errorLine) {
+        numbersHtml += `<span class="bg-red-500 text-white font-bold px-1 rounded-[3px] inline-flex items-center justify-center h-[22px] leading-[22px] shadow-xs">${i}</span>\n`;
+      } else {
+        numbersHtml += `${i}\n`;
+      }
+    }
+    lineContainer.innerHTML = numbersHtml;
+  }
+
+  // Update status metrics
+  function updateMetrics(input: string) {
+    const lines = input ? input.split('\n').length : 0;
+    const bytes = new Blob([input]).size;
+    metricLines.textContent = lines.toString();
+    metricSize.textContent = bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`;
+  }
+
+  // Sort keys helper
+  function sortObjectKeys(obj: any): any {
+    if (Array.isArray(obj)) {
+      return obj.map(sortObjectKeys);
+    } else if (obj !== null && typeof obj === 'object') {
+      return Object.keys(obj)
+        .sort()
+        .reduce((acc: any, key: string) => {
+          acc[key] = sortObjectKeys(obj[key]);
+          return acc;
+        }, {});
+    }
+    return obj;
+  }
+
+  // Main Conversion Function
+  function convert() {
+    const val = sourceInput.value.trim();
+    updateMetrics(sourceInput.value);
+
+    if (!val) {
+      outputResult.value = '';
+      updateLineNumbers(sourceInput, sourceLineNumbers);
+      updateLineNumbers(outputResult, outputLineNumbers);
+      statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+      statusBadgeText.textContent = 'Ready';
+      return;
+    }
+
+    try {
+      if (currentMode === 'yaml2json') {
+        let parsed = YAML.parse(val);
+        if (parsed === undefined) {
+          outputResult.value = '';
+          updateLineNumbers(sourceInput, sourceLineNumbers);
+          updateLineNumbers(outputResult, outputLineNumbers);
+          statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+          statusBadgeText.textContent = 'Valid Syntax';
+          return;
+        }
+        if (toggleSortKeys.checked) {
+          parsed = sortObjectKeys(parsed);
+        }
+        
+        let indentVal: number | string = parseInt(selectIndent.value, 10);
+        if (selectIndent.value === 'tab') indentVal = '\t';
+
+        if (toggleMinify.checked) {
+          outputResult.value = JSON.stringify(parsed);
+        } else {
+          outputResult.value = JSON.stringify(parsed, null, indentVal);
+        }
+      } else {
+        let parsed = JSON.parse(val);
+        if (toggleSortKeys.checked) {
+          parsed = sortObjectKeys(parsed);
+        }
+        let indentVal = parseInt(selectIndent.value, 10);
+        if (isNaN(indentVal)) indentVal = 2;
+
+        outputResult.value = YAML.stringify(parsed, { indent: indentVal });
+      }
+
+      updateLineNumbers(sourceInput, sourceLineNumbers);
+      updateLineNumbers(outputResult, outputLineNumbers);
+      statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+      statusBadgeText.textContent = 'Valid Syntax';
+    } catch (err: any) {
+      const errorLine = extractErrorLine(err, sourceInput.value);
+      outputResult.value = `Syntax Error: ${err.message || 'Invalid format'}`;
+      
+      updateLineNumbers(sourceInput, sourceLineNumbers, errorLine);
+      updateLineNumbers(outputResult, outputLineNumbers);
+
+      statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200';
+      if (errorLine) {
+        statusBadgeText.textContent = `Syntax Error at Line ${errorLine}`;
+      } else {
+        statusBadgeText.textContent = 'Syntax Error';
+      }
+    }
+  }
+
+  // Switch Mode Handler
+  function setMode(mode: 'yaml2json' | 'json2yaml') {
+    if (currentMode === mode) return;
+
+    const previousOutput = outputResult.value.trim();
+    currentMode = mode;
+
+    if (mode === 'yaml2json') {
+      modeYaml2Json.className = 'mode-btn active-mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 bg-ink text-canvas shadow-xs cursor-pointer';
+      modeJson2Yaml.className = 'mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 text-body hover:text-ink cursor-pointer';
+      sourceTitle.textContent = 'Source Document (YAML)';
+      outputTitle.textContent = 'Compiled Structure (JSON)';
+      sourceInput.placeholder = 'Paste or type your YAML data here...';
+
+      if (previousOutput && !previousOutput.startsWith('Syntax Error:')) {
+        sourceInput.value = previousOutput;
+      } else if (sourceInput.value.trim() === SAMPLE_JSON.trim() || !sourceInput.value.trim()) {
+        sourceInput.value = SAMPLE_YAML;
+      }
+    } else {
+      modeJson2Yaml.className = 'mode-btn active-mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 bg-ink text-canvas shadow-xs cursor-pointer';
+      modeYaml2Json.className = 'mode-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 text-body hover:text-ink cursor-pointer';
+      sourceTitle.textContent = 'Source Document (JSON)';
+      outputTitle.textContent = 'Compiled Structure (YAML)';
+      sourceInput.placeholder = 'Paste or type your JSON data here...';
+
+      if (previousOutput && !previousOutput.startsWith('Syntax Error:')) {
+        sourceInput.value = previousOutput;
+      } else if (sourceInput.value.trim() === SAMPLE_YAML.trim() || !sourceInput.value.trim()) {
+        sourceInput.value = SAMPLE_JSON;
+      }
+    }
+
+    convert();
+  }
+
+  // Event Listeners
+  sourceInput.addEventListener('input', convert);
+  selectIndent.addEventListener('change', convert);
+  toggleMinify.addEventListener('change', convert);
+  toggleSortKeys.addEventListener('change', convert);
+
+  modeYaml2Json.addEventListener('click', () => setMode('yaml2json'));
+  modeJson2Yaml.addEventListener('click', () => setMode('json2yaml'));
+
+  // Reset Example button
+  btnSample.addEventListener('click', () => {
+    selectIndent.value = '2';
+    toggleMinify.checked = false;
+    toggleSortKeys.checked = false;
+
+    if (currentMode === 'yaml2json') {
+      sourceInput.value = SAMPLE_YAML;
+    } else {
+      sourceInput.value = SAMPLE_JSON;
+    }
+    convert();
+  });
+
+  // Clear button
+  btnClear.addEventListener('click', () => {
+    sourceInput.value = '';
+    convert();
+  });
+
+  // Swap button
+  btnSwap.addEventListener('click', () => {
+    const outputVal = outputResult.value;
+    if (outputVal && !outputVal.startsWith('Syntax Error:')) {
+      sourceInput.value = outputVal;
+      setMode(currentMode === 'yaml2json' ? 'json2yaml' : 'yaml2json');
+    }
+  });
+
+  // Copy button
+  btnCopy.addEventListener('click', async () => {
+    if (!outputResult.value) return;
+    try {
+      await navigator.clipboard.writeText(outputResult.value);
+      copyText.textContent = 'Copied!';
+      btnCopy.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-[6px] bg-emerald-600 text-white transition text-xs font-medium cursor-pointer shadow-2xs';
+      setTimeout(() => {
+        copyText.textContent = 'Copy';
+        btnCopy.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-[6px] bg-[#0070f3] text-white hover:bg-[#0761d1] transition text-xs font-medium cursor-pointer shadow-2xs';
+      }, 2000);
+    } catch (e) {
+      console.error('Failed to copy', e);
+    }
+  });
+
+  // Download button
+  btnDownload.addEventListener('click', () => {
+    if (!outputResult.value || outputResult.value.startsWith('Syntax Error:')) return;
+    const ext = currentMode === 'yaml2json' ? 'json' : 'yaml';
+    const blob = new Blob([outputResult.value], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `converted-output.${ext}`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // File Upload handler
+  fileUpload.addEventListener('change', (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    if (target.files && target.files[0]) {
+      const file = target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          sourceInput.value = event.target.result as string;
+          if (file.name.endsWith('.json') && currentMode === 'yaml2json') {
+            setMode('json2yaml');
+          }
+          convert();
+        }
+      };
+      reader.readAsText(file);
+    }
+  });
+
+  // Synchronize Scroll between textarea and line numbers
+  sourceInput.addEventListener('scroll', () => {
+    sourceLineNumbers.scrollTop = sourceInput.scrollTop;
+  });
+
+  outputResult.addEventListener('scroll', () => {
+    outputLineNumbers.scrollTop = outputResult.scrollTop;
+  });
+
+  // Initialize with Sample Code on initial load
+  sourceInput.value = SAMPLE_YAML;
+  convert();
+</script>

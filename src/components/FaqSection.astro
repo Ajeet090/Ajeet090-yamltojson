@@ -1,0 +1,39 @@
+---
+import { faqs } from '../data/faqs';
+---
+
+<section id="faq" class="py-16 sm:py-24 bg-canvas border-b border-hairline transition-colors duration-200">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 text-center">
+      <span class="font-mono text-xs font-semibold uppercase tracking-wider text-mute block mb-2">
+        KNOWLEDGE BASE & FAQ
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-semibold tracking-[-0.03em] text-ink mb-3">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-base text-body max-w-2xl mx-auto">
+        Everything you need to know about converting YAML to JSON, syntax rules, Python scripts, CLI tools, and data privacy.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion Items -->
+    <div class="space-y-3">
+      {faqs.map((faq, index) => (
+        <details class="bg-canvas-elevated rounded-xl border border-hairline p-5 shadow-2xs group transition cursor-pointer [&[open]]:border-mute">
+          <summary class="flex items-center justify-between font-semibold text-ink text-base tracking-tight select-none list-none gap-4">
+            <span class="text-left">{faq.q}</span>
+            <span class="w-6 h-6 shrink-0 rounded-full bg-canvas border border-hairline flex items-center justify-center text-body group-open:rotate-180 transition-transform text-xs font-mono">
+              ↓
+            </span>
+          </summary>
+          <div class="mt-3 text-sm text-body leading-relaxed pt-3 border-t border-hairline">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

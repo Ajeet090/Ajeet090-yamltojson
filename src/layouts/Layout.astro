@@ -1,0 +1,114 @@
+---
+import '../styles/global.css';
+import { faqs } from '../data/faqs';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  includeFaqSchema?: boolean;
+}
+
+const {
+  title = "YAML to JSON Converter - Free Online YAML to JSON Tool | yamltojson.net",
+  description = "Free online YAML to JSON converter. Convert YAML to clean, formatted JSON instantly in your browser with real-time syntax validation, Python guides, and 100% privacy.",
+  canonicalUrl = "https://yamltojson.net/",
+  includeFaqSchema = false
+} = Astro.props;
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "YAML to JSON Converter",
+  "url": "https://yamltojson.net/",
+  "description": description,
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Instant real-time YAML to JSON and JSON to YAML conversion",
+    "100% browser client-side data privacy — no server transmission",
+    "Live syntax validation with line/column error reporting",
+    "Python YAML to JSON code examples and developer guide",
+    "Custom indentation (2 spaces, 4 spaces, Tab) and JSON minification",
+    "One-click Copy, Download, and File Upload"
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://yamltojson.net/"
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="YAML to JSON, convert yaml to json, online yaml to json converter, yaml to json converter online, yaml to json online, yaml to json converter, python yaml to json, yaml to json python, python convert yaml to json, free yaml to json converter, yaml to json conversion, online json to yaml converter, json to yaml converter online, convert json to yaml online, online json to yaml, yaml to json online converter, yaml to json online editor, yaml converter" />
+    <meta name="author" content="yamltojson.net" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#fafafa" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="yamltojson.net" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Google Fonts for Geist system aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    {includeFaqSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    )}
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </head>
+  <body class="bg-[#fafafa] text-[#171717] min-h-screen flex flex-col antialiased selection:bg-[#d3e5ff] selection:text-[#0761d1]">
+    <slot />
+  </body>
+</html>
