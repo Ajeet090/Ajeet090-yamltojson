@@ -242,6 +242,8 @@
 </section>
 
 <script>
+  import { formatJsonValue, formatYamlValue, sortObjectKeys } from '../lib/converter.js';
+
   let yamlModule: typeof import('yaml') | null = null;
 
   async function getYaml() {
@@ -362,21 +364,6 @@ services:
     metricSize.textContent = bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`;
   }
 
-  // Sort keys helper
-  function sortObjectKeys(obj: any): any {
-    if (Array.isArray(obj)) {
-      return obj.map(sortObjectKeys);
-    } else if (obj !== null && typeof obj === 'object') {
-      return Object.keys(obj)
-        .sort()
-        .reduce((acc: any, key: string) => {
-          acc[key] = sortObjectKeys(obj[key]);
-          return acc;
-        }, {});
-    }
-    return obj;
-  }
-
   // Main Conversion Function
   async function convert() {
     const val = sourceInput.value.trim();
@@ -403,27 +390,32 @@ services:
           statusBadgeText.textContent = 'Valid Syntax';
           return;
         }
+
         if (toggleSortKeys.checked) {
           parsed = sortObjectKeys(parsed);
         }
-        
+
         let indentVal: number | string = parseInt(selectIndent.value, 10);
         if (selectIndent.value === 'tab') indentVal = '\t';
 
-        if (toggleMinify.checked) {
-          outputResult.value = JSON.stringify(parsed);
-        } else {
-          outputResult.value = JSON.stringify(parsed, null, indentVal);
-        }
+        outputResult.value = formatJsonValue(parsed, {
+          indent: indentVal,
+          minify: toggleMinify.checked,
+        });
       } else {
         let parsed = JSON.parse(val);
         if (toggleSortKeys.checked) {
           parsed = sortObjectKeys(parsed);
         }
-        let indentVal = parseInt(selectIndent.value, 10);
-        if (isNaN(indentVal)) indentVal = 2;
 
-        outputResult.value = YAML.stringify(parsed, { indent: indentVal });
+        let indentVal: number | string = parseInt(selectIndent.value, 10);
+        if (selectIndent.value === 'tab') indentVal = '\t';
+
+        outputResult.value = formatYamlValue(YAML, parsed, {
+          indent: indentVal,
+          minify: toggleMinify.checked,
+          sortKeys: toggleSortKeys.checked,
+        });
       }
 
       updateLineNumbers(sourceInput, sourceLineNumbers);

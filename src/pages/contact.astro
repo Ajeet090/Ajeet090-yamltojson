@@ -167,6 +167,18 @@ import Footer from '../components/Footer.astro';
   if (form && successBanner) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      const name = (document.getElementById('contact-name') as HTMLInputElement)?.value?.trim() || 'Developer';
+      const email = (document.getElementById('contact-email') as HTMLInputElement)?.value?.trim() || '';
+      const subject = (document.getElementById('contact-subject') as HTMLSelectElement)?.value || 'support';
+      const message = (document.getElementById('contact-message') as HTMLTextAreaElement)?.value?.trim() || '';
+
+      const subjectText = encodeURIComponent(`yamltojson.net - ${subject}`);
+      const bodyText = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      );
+
+      window.location.href = `mailto:support@yamltojson.net?subject=${subjectText}&body=${bodyText}`;
       successBanner.classList.remove('hidden');
       form.reset();
       window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
